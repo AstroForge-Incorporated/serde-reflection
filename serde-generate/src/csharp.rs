@@ -1231,4 +1231,8 @@ impl crate::SourceInstaller for Installer {
     fn install_bcs_runtime(&self) -> std::result::Result<(), Self::Error> {
         self.install_runtime(include_directory!("runtime/csharp/Bcs"), "Bcs")
     }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        todo!()
+    }
 }

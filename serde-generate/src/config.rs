@@ -19,6 +19,7 @@ pub struct CodeGeneratorConfig {
 pub enum Encoding {
     Bincode,
     Bcs,
+    Postcard,
 }
 
 /// Track types definitions provided by external modules.
@@ -51,6 +52,9 @@ pub trait SourceInstaller {
 
     /// Install the bincode runtime.
     fn install_bincode_runtime(&self) -> std::result::Result<(), Self::Error>;
+
+    /// Install the postcard runtime.
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error>;
 
     /// Install the Libra Canonical Serialization (BCS) runtime.
     fn install_bcs_runtime(&self) -> std::result::Result<(), Self::Error>;
@@ -124,6 +128,7 @@ impl Encoding {
         match self {
             Encoding::Bincode => "bincode",
             Encoding::Bcs => "bcs",
+            Encoding::Postcard => "postcard"
         }
     }
 }

@@ -1018,8 +1018,13 @@ impl crate::SourceInstaller for Installer {
         Ok(())
     }
 
+
     fn install_bcs_runtime(&self) -> std::result::Result<(), Self::Error> {
         self.runtime_installation_message("bcs");
         Ok(())
+    }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        todo!()
     }
 }

@@ -138,6 +138,7 @@ fn test_csharp_runtime_on_simple_data(dir: PathBuf, runtime: Runtime) {
     match runtime {
         Runtime::Bincode => installer.install_bincode_runtime().unwrap(),
         Runtime::Bcs => installer.install_bcs_runtime().unwrap(),
+        Runtime::Postcard => installer.install_postcard_runtime().unwrap(),
     }
     installer.install_module(&config, &registry).unwrap();
 
@@ -231,6 +232,7 @@ fn test_csharp_runtime_on_supported_types(dir: PathBuf, runtime: Runtime) {
     match runtime {
         Runtime::Bincode => installer.install_bincode_runtime().unwrap(),
         Runtime::Bcs => installer.install_bcs_runtime().unwrap(),
+        Runtime::Postcard => installer.install_postcard_runtime().unwrap()
     }
     installer.install_module(&config, &registry).unwrap();
 

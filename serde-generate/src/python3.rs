@@ -474,4 +474,8 @@ impl crate::SourceInstaller for Installer {
         )?;
         Ok(())
     }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        todo!()
+    }
 }

@@ -36,6 +36,7 @@ serde_yaml = "0.8.17"
 bincode = "1.3.3"
 bcs = "0.1.3"
 maplit = "1.0.2"
+postcard = { version = "1.0", features = ["alloc"] } 
 
 [features]
 default = ["cpp", "csharp", "dart", "golang", "java", "ocaml", "python3", "rust", "swift", "typescript"]

@@ -38,6 +38,7 @@ enum Runtime {
     Serde,
     Bincode,
     Bcs,
+    Postcard,
 }
 }
 
@@ -92,6 +93,9 @@ where
             }
             Runtime::Bcs => {
                 encodings.push(Encoding::Bcs);
+            }
+            Runtime::Postcard => {
+                encodings.push(Encoding::Postcard);
             }
             Runtime::Serde => (),
         }
@@ -193,6 +197,7 @@ fn main() {
                     Runtime::Serde => installer.install_serde_runtime().unwrap(),
                     Runtime::Bincode => installer.install_bincode_runtime().unwrap(),
                     Runtime::Bcs => installer.install_bcs_runtime().unwrap(),
+                    Runtime::Postcard => installer.install_postcard_runtime().unwrap(),
                 }
             }
         }

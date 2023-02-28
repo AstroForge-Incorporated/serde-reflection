@@ -17,6 +17,11 @@ fn test_cpp_bincode_runtime_on_simple_date() {
     test_cpp_runtime_on_simple_date(Runtime::Bincode);
 }
 
+#[test]
+fn test_cpp_postcard_runtime_on_simple_date() {
+    test_cpp_runtime_on_simple_date(Runtime::Postcard);
+}
+
 fn test_cpp_runtime_on_simple_date(runtime: Runtime) {
     let registry = test_utils::get_simple_registry().unwrap();
     let dir = tempdir().unwrap();

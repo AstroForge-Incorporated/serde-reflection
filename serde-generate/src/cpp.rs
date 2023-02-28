@@ -602,6 +602,12 @@ impl crate::SourceInstaller for Installer {
         Ok(())
     }
 
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        let mut file = self.create_header_file("postcard")?;
+        write!(file, "{}", include_str!("../runtime/cpp/postcard.hpp"))?;
+        Ok(())
+    }
+
     fn install_bincode_runtime(&self) -> std::result::Result<(), Self::Error> {
         let mut file = self.create_header_file("bincode")?;
         write!(file, "{}", include_str!("../runtime/cpp/bincode.hpp"))?;

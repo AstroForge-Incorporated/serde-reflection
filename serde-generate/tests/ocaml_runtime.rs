@@ -42,6 +42,10 @@ fn test_ocaml_runtime_on_simple_data(runtime: Runtime) {
             installer.install_bincode_runtime().unwrap();
             "bincode"
         }
+        Runtime::Postcard => {
+            installer.install_postcard_runtime().unwrap();
+            "postcard"
+        }
     };
 
     let config =
@@ -156,6 +160,10 @@ fn test_ocaml_runtime_on_supported_types(runtime: Runtime) {
         Runtime::Bincode => {
             installer.install_bincode_runtime().unwrap();
             "bincode"
+        }
+        Runtime::Postcard => {
+            installer.install_postcard_runtime().unwrap();
+            "postcard"
         }
     };
 

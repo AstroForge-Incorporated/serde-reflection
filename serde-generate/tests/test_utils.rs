@@ -340,6 +340,7 @@ fn get_sample_value_with_long_sequence(length: usize) -> SerdeData {
 pub enum Runtime {
     Bcs,
     Bincode,
+    Postcard
 }
 
 impl std::convert::From<Runtime> for Encoding {
@@ -347,6 +348,7 @@ impl std::convert::From<Runtime> for Encoding {
         match runtime {
             Runtime::Bcs => Encoding::Bcs,
             Runtime::Bincode => Encoding::Bincode,
+            Runtime::Postcard => Encoding::Postcard
         }
     }
 }
@@ -360,6 +362,7 @@ impl Runtime {
         match self {
             Self::Bcs => "bcs = \"0.1.1\"",
             Self::Bincode => "bincode = \"1.3\"",
+            Self::Postcard => "postcard = \"1.0\""
         }
     }
 
@@ -370,6 +373,7 @@ impl Runtime {
         match self {
             Self::Bcs => bcs::to_bytes(value).unwrap(),
             Self::Bincode => bincode::serialize(value).unwrap(),
+            Self::Postcard => postcard::to_allocvec(value).unwrap(),
         }
     }
 
@@ -380,6 +384,7 @@ impl Runtime {
         match self {
             Self::Bcs => bcs::from_bytes(bytes).ok(),
             Self::Bincode => bincode::deserialize(bytes).ok(),
+            Self::Postcard => postcard::from_bytes(bytes).ok()
         }
     }
 
@@ -432,6 +437,7 @@ impl Runtime {
         match self {
             Self::Bcs => "bcs::to_bytes",
             Self::Bincode => "bincode::serialize",
+            Self::Postcard => "postcard::to_allocvec"
         }
     }
 
@@ -439,6 +445,7 @@ impl Runtime {
         match self {
             Self::Bcs => "bcs::from_bytes",
             Self::Bincode => "bincode::deserialize",
+            Self::Postcard => "postcard::from_bytes"
         }
     }
 
@@ -448,6 +455,7 @@ impl Runtime {
         match self {
             Self::Bcs => true,
             Self::Bincode => false,
+            Self::Postcard => false,
         }
     }
 
@@ -456,6 +464,7 @@ impl Runtime {
         match self {
             Self::Bcs => false,
             Self::Bincode => true,
+            Self::Postcard => true,
         }
     }
 
@@ -463,6 +472,7 @@ impl Runtime {
         match self {
             Self::Bcs => Some(bcs::MAX_SEQUENCE_LENGTH),
             Self::Bincode => None,
+            Self::Postcard => None,
         }
     }
 
@@ -470,6 +480,7 @@ impl Runtime {
         match self {
             Self::Bcs => Some(bcs::MAX_CONTAINER_DEPTH),
             Self::Bincode => None,
+            Self::Postcard => None,
         }
     }
 
@@ -596,6 +607,7 @@ impl Runtime {
                 }
                 result.push(value as u8);
             }
+            Runtime::Postcard =>  result.append(&mut self.serialize(&(length as u64)))
         }
         result
     }

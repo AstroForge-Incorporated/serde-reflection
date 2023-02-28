@@ -37,6 +37,10 @@ fn test_that_ocaml_code_compiles_with_config(
             installer.install_bincode_runtime().unwrap();
             "\n(libraries bincode_runtime)"
         }
+        Some(Encoding::Postcard) => {
+            installer.install_postcard_runtime().unwrap();
+            "\n(libraries postcard_runtime)"
+        }
         None => {
             installer.install_serde_runtime().unwrap();
             ""

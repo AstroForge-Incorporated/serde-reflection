@@ -4,7 +4,7 @@
 use crate::{
     analyzer,
     indent::{IndentConfig, IndentedWriter},
-    CodeGeneratorConfig,
+    CodeGeneratorConfig, SourceInstaller,
 };
 use serde_reflection::{ContainerFormat, Format, Named, Registry, VariantFormat};
 use std::{
@@ -409,7 +409,7 @@ impl Installer {
     }
 }
 
-impl crate::SourceInstaller for Installer {
+impl SourceInstaller for Installer {
     type Error = Box<dyn std::error::Error>;
 
     fn install_module(
@@ -460,6 +460,11 @@ serde_bytes = "0.11"
 
     fn install_bcs_runtime(&self) -> std::result::Result<(), Self::Error> {
         Self::runtime_installation_message("bcs");
+        Ok(())
+    }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        Self::runtime_installation_message("postcard");
         Ok(())
     }
 }

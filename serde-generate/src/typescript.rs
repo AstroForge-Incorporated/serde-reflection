@@ -733,4 +733,8 @@ impl crate::SourceInstaller for Installer {
     fn install_bcs_runtime(&self) -> std::result::Result<(), Self::Error> {
         self.install_runtime(include_directory!("runtime/typescript/bcs"), "bcs")
     }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        todo!()
+    }
 }

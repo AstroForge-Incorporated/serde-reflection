@@ -889,4 +889,10 @@ impl crate::SourceInstaller for Installer {
         // Ignored. Currently always installed with Serde.
         Ok(())
     }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        // Ignored. Currently always installed with Serde.
+        Ok(())
+    }
+
 }

@@ -391,6 +391,7 @@ impl crate::SourceInstaller for Installer {
                 match enc {
                     Encoding::Bcs => runtime_str = "\n(libraries bcs_runtime)",
                     Encoding::Bincode => runtime_str = "\n(libraries bincode_runtime)",
+                    Encoding::Postcard => todo!(),
                 }
             }
         }
@@ -427,5 +428,9 @@ impl crate::SourceInstaller for Installer {
         self.install_runtime(include_directory!("runtime/ocaml/ppx"), "ppx")?;
         self.install_runtime(include_directory!("runtime/ocaml/serde"), "serde")?;
         self.install_runtime(include_directory!("runtime/ocaml/bcs"), "bcs")
+    }
+
+    fn install_postcard_runtime(&self) -> std::result::Result<(), Self::Error> {
+        todo!()
     }
 }
